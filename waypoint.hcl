@@ -14,7 +14,7 @@ variable "registry_password" {
   env       = ["REGISTRY_PASSWORD"]
 }
 
-project = "go-web"
+project = "SampleGoAppWithTerraform"
 
 app "go-web" {
   labels = {
@@ -25,10 +25,8 @@ app "go-web" {
     use "docker" {}
     registry {
       use "docker" {
-        # Replace with your docker image name (i.e. registry.hub.docker.com/library/go-web)
         image = "${var.registry_username}/go-web"
         tag   = gitrefpretty()
-        local = true
         auth {
           username = var.registry_username
           password = var.registry_password
@@ -38,16 +36,9 @@ app "go-web" {
   }
 
   deploy {
-    use "kubernetes" {
+    use "docker" {
       probe_path = "/"
-      service_port = 3000
-    }
-  }
-
-  release {
-    use "kubernetes" {
-      load_balancer = true
-      // port          = 3000
+      service_port = 80
     }
   }
 }
