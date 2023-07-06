@@ -37,7 +37,6 @@ app "go-web" {
 
   deploy {
     use "docker" {
-      probe_path = "/"
       service_port = 80
     }
   }
