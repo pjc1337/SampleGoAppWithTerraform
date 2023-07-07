@@ -3,7 +3,11 @@
 Currently running at https://properly-unique-beagle.waypoint.run/
 
 ## About this app
-This app runs a built from scratch Docker container that executes a Go binary. The Go binary runs a simple static website that can be hosted anywhere.
+This app runs a built from scratch Docker container that executes a Go binary. The Go binary runs a simple static website that can be hosted anywhere. To add new website endpoints or paths, one can modify [hello-world.go](hello-world.go) accordingly. To update static website assets, modify the contents of the [static/](static) folder or update the [index.html](static/index.html). To run locally, one can run `go run .` or run the container locally. The site should open at http://localhost/ in the browser.
+```
+docker build . -t go-web:latest
+docker run -d --rm -p 80:80 go-web:latest
+```
 
 ## Infrastructure Tooling
 * [**Terraform**](https://terraform.io) - used to deploy the AWS infrastructure.
