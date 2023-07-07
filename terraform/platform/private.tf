@@ -10,8 +10,8 @@ resource "aws_subnet" "private" {
 }
 
 resource "aws_eip" "ngw" {
-  for_each         = local.solo_nat_gateway ? toset([local.azs_to_use[0]]) : toset(local.azs_to_use)
-  domain           = "vpc"
+  for_each = local.solo_nat_gateway ? toset([local.azs_to_use[0]]) : toset(local.azs_to_use)
+  domain   = "vpc"
 }
 
 resource "aws_nat_gateway" "ngw" {

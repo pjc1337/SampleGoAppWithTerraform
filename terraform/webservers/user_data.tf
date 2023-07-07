@@ -15,12 +15,13 @@ yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/has
 yum -y install waypoint
 
 EOF
-  user_data_deb = <<EOF
+  user_data_deb  = <<EOF
 #!/bin/sh
-# Install k3s pre-reqs
-
-# Install k3s
-curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--write-kubeconfig-mode=644" sh - 
+# Update to latest packages
+apt update && apt upgrade -y
+# Install Docker
+apt install docker.io -y
+usermod -aG docker ubuntu
 
 # Install Waypoint
 curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add -
