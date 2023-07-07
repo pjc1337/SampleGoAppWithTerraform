@@ -35,7 +35,7 @@ app "go-web" {
     registry {
       use "docker" {
         image = "${var.registry_username}/go-web"
-        tag   = gitrefpretty()
+        tag   = "latest" #gitrefpretty()
         auth {
           username = var.registry_username
           password = var.registry_password
