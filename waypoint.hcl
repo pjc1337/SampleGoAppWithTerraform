@@ -1,19 +1,3 @@
-# Copyright (c) HashiCorp, Inc.
-# SPDX-License-Identifier: MPL-2.0
-
-variable "registry_username" {
-  type    = string
-  default = "parkerclelland"
-  env     = ["REGISTRY_USERNAME"]
-}
-
-variable "registry_password" {
-  type      = string
-  sensitive = true
-  default   = "dckr_pat_m94m0_WGmv_k1qHeGMEQMN9LsYw"
-  env       = ["REGISTRY_PASSWORD"]
-}
-
 project = "SampleGoAppWithTerraform"
 
 runner {
@@ -34,12 +18,8 @@ app "go-web" {
     use "docker" {}
     registry {
       use "docker" {
-        image = "${var.registry_username}/go-web"
-        tag   = "latest" #gitrefpretty()
-        auth {
-          username = var.registry_username
-          password = var.registry_password
-        }
+        image = "go-web"
+        tag   = gitrefpretty()
       }
     }
   }
