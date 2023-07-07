@@ -31,7 +31,7 @@ app "go-web" {
     registry {
       use "docker" {
         image = "${var.registry_username}/go-web"
-        tag   = substr(gitrefpretty(), 0, 12)
+        tag   = "latest" #substr(gitrefpretty(), 0, 12)
         auth {
           hostname = "registry.hub.docker.com"
           username = var.registry_username
