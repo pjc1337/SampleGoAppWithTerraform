@@ -25,8 +25,9 @@ variable "registry_password" {
 }
 
 app "go-web" {
-  use "docker" {}
-  registry {
+  build {
+    use "docker" {}
+    registry {
       image = "${var.registry_username}/go-web"
       tag   = "latest"
       auth {
@@ -35,6 +36,7 @@ app "go-web" {
         password = var.registry_password
       }
     }
+  }
 
   deploy {
     use "docker" {
