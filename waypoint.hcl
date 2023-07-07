@@ -28,12 +28,14 @@ app "go-web" {
   build {
     use "docker" {}
     registry {
-      image = "${var.registry_username}/go-web"
-      tag   = "latest"
-      auth {
-        hostname = "registry.hub.docker.com"
-        username = var.registry_username
-        password = var.registry_password
+      use "docker" {
+        image = "${var.registry_username}/go-web"
+        tag   = "latest"
+        auth {
+          hostname = "registry.hub.docker.com"
+          username = var.registry_username
+          password = var.registry_password
+        }
       }
     }
   }
