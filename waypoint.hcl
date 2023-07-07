@@ -7,7 +7,8 @@ runner {
     ref = "HEAD"
   }
   poll {
-    enabled = true
+    enabled  = true
+    interval = "240s"
   }
 }
 
