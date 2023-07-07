@@ -15,13 +15,7 @@ runner {
 
 app "go-web" {
   build {
-    use "docker" {}
-    registry {
-      use "docker" {
-        image = "go-web"
-        tag   = gitrefpretty()
-      }
-    }
+    use "pack" {}
   }
 
   deploy {
